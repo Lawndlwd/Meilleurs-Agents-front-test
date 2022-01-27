@@ -1,0 +1,21 @@
+.Details {
+  @apply py-4 px-4 rounded flex gap-5 w-10/12 items-start mx-auto my-5 border-b bg-white;
+}
+.Details_contact {
+  @apply grid grid-cols-6 justify-between  w-full my-2;
+}
+.Details_section {
+  @apply w-full px-2 py-1;
+}
+.Details_contact-name {
+  @apply col-span-1;
+}
+.Details_contact-value {
+  @apply col-start-3 col-span-3 text-blue-600;
+}
+.subDetails {
+  @apply text-gray-500 text-sm;
+}
+.Details_body {
+  @apply mt-5;
+}
