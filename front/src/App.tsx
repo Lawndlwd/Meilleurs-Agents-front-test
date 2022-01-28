@@ -1,9 +1,7 @@
-import './App.css';
-
 import { Details } from 'components/Detail/Details';
 import { Messages } from 'components/Message/Messages';
 import { getAgents, getMessages } from 'http/http';
-import { IAgent } from 'interfaces/types';
+import { IAgent, IMessage } from 'interfaces/types';
 import { Layout } from 'layout/default';
 import React from 'react';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
@@ -14,13 +12,32 @@ function App() {
 
   const navigate = useNavigate();
   const params = window.location.pathname.split('/')[2];
-
   const [chosenAgent, chosenAgentSet] = React.useState<string | null>(params);
-  const messages = () => {
-    const agent =
-      chosenAgent && state.agents.find((item) => item.id.toString() === chosenAgent);
-    return agent ? agent.messages : [];
+
+  const agent =
+    chosenAgent && state.agents.find((item) => item.id.toString() === chosenAgent);
+  const messages = agent ? agent.messages : [];
+
+  //search
+  const [searchResults, setSearchResults] = React.useState<Array<IMessage>>([]);
+  const [searchTerm, setSearchTerm] = React.useState('');
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
   };
+  React.useEffect(() => {
+    const results = messages.filter(
+      (message) =>
+        message.contact.firstname.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        message.contact.lastname.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        message.contact.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        message.contact.phone.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        message.body.toLowerCase().includes(searchTerm.toLowerCase()),
+    );
+
+    setSearchResults(results);
+  }, [searchTerm, messages]);
+
+  // fetch API data
   const callback = React.useCallback(async () => {
     const json = await getAgents();
     const agents: Array<IAgent> = await Promise.all(
@@ -39,34 +56,31 @@ function App() {
       type: 'SET_AGENTS',
       payload: agents,
     });
-  }, [chosenAgent]);
+  }, []);
   React.useEffect(() => {
     callback();
   }, [callback]);
 
   return (
-    <div className="App">
-      <Layout
-        chosenAgent={chosenAgent}
-        chosenAgentSet={(value) => {
-          chosenAgentSet(value);
-          navigate(`/realtors/${value}`);
-        }}>
-        <Routes>
-          {state.agents.length && (
-            <Route
-              path="realtors/:realtors_id"
-              element={<Messages messages={messages() || state.agents[0].messages} />}
-            />
-          )}
+    <Layout
+      chosenAgent={chosenAgent}
+      handleChange={handleChange}
+      searchTerm={searchTerm}
+      chosenAgentSet={(value) => {
+        chosenAgentSet(value);
+        navigate(`/realtors/${value}`);
+      }}>
+      <Routes>
+        {state.agents.length && (
           <Route
-            path="realtors/:realtors_id/messages/:messages_id"
-            element={<Details />}
+            path="realtors/:realtors_id"
+            element={<Messages messages={searchResults || state.agents[0].messages} />}
           />
-          <Route path="/" element={<Navigate to="realtors/101" replace />} />
-        </Routes>
-      </Layout>
-    </div>
+        )}
+        <Route path="realtors/:realtors_id/messages/:messages_id" element={<Details />} />
+        <Route path="/" element={<Navigate to="realtors/101" replace />} />
+      </Routes>
+    </Layout>
   );
 }
 

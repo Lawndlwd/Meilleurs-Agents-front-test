@@ -8,7 +8,7 @@ export const getAgents = async (): Promise<Array<IAgent>> => {
 
 export const getMessages = async (agent_id: number): Promise<Array<IMessage>> => {
   const response = await fetch(
-    `http://localhost:8080/realtors/${agent_id}/messages?sort=date%3Adesc&page=1&page_size=20`,
+    `http://localhost:8080/realtors/${agent_id}/messages?sort=date%3Adesc&page=1&page_size=100`,
   );
   const json: Array<IMessage> = await response.json();
   return json;

@@ -1,5 +1,5 @@
 .Header {
-  @apply p-3 flex bg-white justify-between shadow-lg relative;
+  @apply p-3 flex bg-white justify-between shadow-lg relative items-center;
 }
 .Header_options {
   @apply flex gap-4;

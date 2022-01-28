@@ -1,19 +1,20 @@
 import { Details } from 'components/Detail/Details';
 import useWindowDimensions from 'hooks/Dementions';
+import { IMessage } from 'interfaces/types';
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { State } from 'store/messages';
 
 import { Message } from './Message';
 
-export const Messages = ({ messages }: State) => {
+export const Messages = ({ messages }: { messages: IMessage[] }) => {
   let navigate = useNavigate();
 
   const { width } = useWindowDimensions();
   const { realtors_id } = useParams();
 
   React.useEffect(() => {
-    if (width > 720) navigate(`/realtors/${realtors_id}?id=${messages[0].id}`);
+    if (width > 720 && messages.length)
+      navigate(`/realtors/${realtors_id}?id=${messages[0].id}`);
   }, [width]);
   return (
     <main className="layout">
