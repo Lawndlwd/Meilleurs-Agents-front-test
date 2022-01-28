@@ -4,3 +4,6 @@
 .Header_options {
   @apply flex gap-4;
 }
+.select {
+  @apply appearance-none w-24 rounded-lg px-3 py-1 border;
+}

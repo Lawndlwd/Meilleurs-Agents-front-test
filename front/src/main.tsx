@@ -7,17 +7,14 @@ import { BrowserRouter } from 'react-router-dom';
 
 import App from './App';
 import { AgentContextProvider } from './store/agent';
-import { MessageContextProvider } from './store/messages';
 
 ReactDOM.render(
-  <BrowserRouter>
-    <React.StrictMode>
-      <AgentContextProvider>
-        <MessageContextProvider>
-          <App />
-        </MessageContextProvider>
-      </AgentContextProvider>
-    </React.StrictMode>
-  </BrowserRouter>,
+  <React.StrictMode>
+    <AgentContextProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </AgentContextProvider>
+  </React.StrictMode>,
   document.getElementById('root'),
 );

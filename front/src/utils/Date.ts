@@ -19,12 +19,13 @@ export const dateConverter = (date: Date): string => {
 };
 
 export const fullDate = (date: Date): string => {
-  const year = new Date(date).toLocaleDateString('en-US', { year: 'numeric' });
-  const month = new Date(date).toLocaleDateString('en-US', { month: 'short' });
+  let year = new Date(date).toLocaleDateString('en-US', { year: 'numeric' });
+  let month = new Date(date).toLocaleDateString('en-US', { month: 'short' });
+  let day = new Date(date).toLocaleDateString('en-US', { day: 'numeric' });
+  let hours = new Date(date).getHours();
+  let minutes = new Date(date).getMinutes().toString();
 
-  const day = new Date(date).toLocaleDateString('en-US', { day: 'numeric' });
-  const hours = new Date(date).getHours();
-  const minutes = new Date(date).getMinutes();
+  if (+minutes < 10) minutes = `0${minutes}`;
 
   return `${day} ${month} ${year} at ${hours}:${minutes}`;
 };

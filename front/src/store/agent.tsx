@@ -1,17 +1,19 @@
+/* eslint-disable no-case-declarations */
 /* eslint-disable no-unused-vars */
 import { IAgent } from 'interfaces/types';
 import React, { useContext } from 'react';
 
-export type Actions = { type: 'SET_AGENTS'; payload: Array<IAgent> };
+export type Actions = { type: 'SET_AGENTS' | 'UPDATE_AGENTS'; payload: any };
 export type Dispatch = (action: Actions) => void;
 
 export const initialAgentState: { agents: Array<IAgent> } = { agents: [] };
 export type State = typeof initialAgentState;
+
 const agentContext = React.createContext<{
   state: State;
   dispatch: Dispatch;
 }>({
-  state: { agents: [] },
+  state: initialAgentState,
   dispatch: (action: Actions) => [],
 });
 
@@ -21,7 +23,31 @@ export function agentReducer(state: State, action: Actions) {
       return {
         agents: action.payload,
       };
-
+    case 'UPDATE_AGENTS':
+      const updatedData = state.agents.map((agent) => {
+        if (agent.id.toString() === action.payload.agent_id) {
+          console.log('agent_id', action.payload.agent_id);
+          const updatedMessage = agent.messages.map((message) => {
+            if (message.id.toString() === action.payload.message_id.toString()) {
+              console.log('message_id', action.payload.message_id);
+              console.log({ ...message, read: true });
+              return { ...message, read: true };
+            } else {
+              return message;
+            }
+          });
+          console.log('updatedMessage', updatedMessage);
+          return {
+            ...agent,
+            unread_messages: agent.unread_messages - 1,
+            messages: updatedMessage,
+          };
+        } else return agent;
+      });
+      console.log(updatedData);
+      return {
+        agents: updatedData,
+      };
     default:
       return state;
   }

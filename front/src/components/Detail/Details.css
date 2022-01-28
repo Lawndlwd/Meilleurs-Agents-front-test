@@ -1,5 +1,5 @@
 .Details {
-  @apply py-4 px-4 rounded flex gap-5 w-10/12 items-start mx-auto my-5 border-b bg-white;
+  @apply py-4 px-4 rounded flex gap-5 w-10/12 items-start mx-auto my-5 border-b bg-white overflow-y-scroll;
 }
 .Details_contact {
   @apply grid grid-cols-6 justify-between  w-full my-2;
@@ -11,7 +11,7 @@
   @apply col-span-1;
 }
 .Details_contact-value {
-  @apply col-start-3 col-span-3 text-blue-600;
+  @apply col-start-3 col-span-3 text-blue-800 no-underline;
 }
 .subDetails {
   @apply text-gray-500 text-sm;

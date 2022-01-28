@@ -19,4 +19,5 @@ export interface IAgent {
   logo: string;
   name: string;
   unread_messages: number;
+  messages: Array<IMessage>;
 }

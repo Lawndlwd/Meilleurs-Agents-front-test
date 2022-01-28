@@ -1,4 +1,4 @@
-import './Message/Message.css';
+import '../Message/Message.css';
 
 import React from 'react';
 export const ShortText = ({ text, read }: { text: string; read: boolean }) => {

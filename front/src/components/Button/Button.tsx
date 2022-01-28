@@ -1,8 +1,7 @@
 import './Button.css';
 
+import message from 'assets/message.svg';
 import React from 'react';
-
-import message from '../../assets/message.svg';
 export const Button = ({ messageunreded }: { messageunreded: number }) => {
   return (
     <div className="Button">

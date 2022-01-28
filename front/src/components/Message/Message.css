@@ -1,6 +1,15 @@
 .Message {
   @apply py-4 px-4 rounded inline-flex gap-5 items-start border-b bg-white w-full;
 }
+.Message_desktop {
+  @apply py-4 px-4 rounded flex flex-col gap-5 items-start border-b bg-white col-span-4 overflow-y-scroll;
+}
+.Message_tablet {
+  @apply py-4 px-4 rounded flex flex-col gap-5 items-start border-b bg-white col-span-5 overflow-y-scroll;
+}
+.Messages {
+  @apply col-span-12;
+}
 .Message_section {
   @apply w-full;
 }
@@ -15,7 +24,7 @@
   @apply pt-2;
 }
 .Message_time {
-  @apply text-blue-700 m-0;
+  @apply text-blue-800 m-0;
 }
 .Message_sender {
   @apply text-lg font-bold  m-0;
@@ -25,4 +34,13 @@
 }
 .Message_subtitle {
   @apply m-0;
+}
+.layout {
+  @apply grid grid-cols-12 h-screen;
+}
+.layout {
+  height: calc(100vh - 67px);
+}
+.noname {
+  @apply col-span-7;
 }
