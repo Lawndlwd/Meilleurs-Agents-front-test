@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import './Search.css';
 
 import React from 'react';
@@ -11,8 +12,8 @@ export const Search = ({
 }: {
   label: string;
   placeHolder: string;
-  handleChange: any;
-  searchTerm: any;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  searchTerm: string;
 }) => {
   const uid = v4();
   return (

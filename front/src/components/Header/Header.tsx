@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import './Header.css';
 
 import logo from 'assets/logo.svg';
@@ -11,11 +12,10 @@ export const Header = ({
   handleChange,
   searchTerm,
 }: {
-  // eslint-disable-next-line no-unused-vars
   onAgentChange: (value: string) => void;
   value: string | null;
-  handleChange: any;
-  searchTerm: any;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  searchTerm: string;
 }) => {
   const { state: agentState } = useAgent();
   const [messageunreded, messageunrededSet] = React.useState(0);

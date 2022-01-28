@@ -44,3 +44,6 @@
 .noname {
   @apply col-span-7;
 }
+.searchTerm {
+  @apply font-bold;
+}

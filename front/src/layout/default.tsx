@@ -12,8 +12,8 @@ export const Layout = ({
   children: React.ReactNode;
   chosenAgentSet: (value: string) => void;
   chosenAgent: string | null;
-  handleChange: any;
-  searchTerm: any;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  searchTerm: string;
 }) => {
   return (
     <main className="Layout">

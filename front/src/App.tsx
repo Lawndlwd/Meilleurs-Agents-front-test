@@ -76,7 +76,12 @@ function App() {
         {state.agents.length && (
           <Route
             path="realtors/:realtors_id"
-            element={<Messages messages={searchResults || state.agents[0].messages} />}
+            element={
+              <Messages
+                messages={searchResults || state.agents[0].messages}
+                searchTerm={searchTerm}
+              />
+            }
           />
         )}
         <Route path="realtors/:realtors_id/messages/:messages_id" element={<Details />} />

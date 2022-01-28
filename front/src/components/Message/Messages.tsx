@@ -6,7 +6,13 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { Message } from './Message';
 
-export const Messages = ({ messages }: { messages: IMessage[] }) => {
+export const Messages = ({
+  messages,
+  searchTerm,
+}: {
+  messages: IMessage[];
+  searchTerm: string;
+}) => {
   let navigate = useNavigate();
 
   const { width } = useWindowDimensions();
@@ -26,8 +32,13 @@ export const Messages = ({ messages }: { messages: IMessage[] }) => {
             ? 'Message_desktop'
             : 'Messages'
         }`}>
-        {messages.length &&
-          messages.map((message) => <Message key={message.id} message={message} />)}
+        {messages.length ? (
+          messages.map((message) => <Message key={message.id} message={message} />)
+        ) : (
+          <p>
+            No messages found for <span className="searchTerm">{`"${searchTerm}"`}</span>
+          </p>
+        )}
       </aside>
       <Details />
     </main>
