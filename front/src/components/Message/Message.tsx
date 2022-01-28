@@ -54,9 +54,17 @@ export const Message = ({ message }: { message: IMessage }) => {
     if (width > 720) navigate(`/realtors/${realtors_id}?id=${message.id}`);
     else navigate(`/realtors/${realtors_id}/messages/${message.id}`);
   };
+  React.useEffect(() => {
+    const id = searchParams.get('id');
+    if (id) {
+      const el = document.getElementById(id);
 
+      if (el) el.scrollIntoView();
+    }
+  }, []);
   return (
     <section
+      id={message.id.toString()}
       className="Message"
       style={{
         color: message.read ? '#777' : '',
