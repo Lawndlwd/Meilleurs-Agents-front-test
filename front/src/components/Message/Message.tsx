@@ -9,7 +9,7 @@ import useWindowDimensions from 'hooks/Dementions';
 import { updateMessage } from 'http/http';
 import { IMessage } from 'interfaces/types';
 import React from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useAgent } from 'store/agent';
 import { dateConverter } from 'utils/Date';
 import { substring } from 'utils/substr';
@@ -18,7 +18,9 @@ export const Message = ({ message }: { message: IMessage }) => {
   const { dispatch } = useAgent();
   const { realtors_id } = useParams();
   const { width } = useWindowDimensions();
+  const [searchParams] = useSearchParams();
 
+  const openedMessage = searchParams.get('id');
   const fullname = () => `${message.contact.firstname} ${message.contact.lastname}`;
 
   const messageType = (messagetype: string) => {
@@ -58,6 +60,7 @@ export const Message = ({ message }: { message: IMessage }) => {
       className="Message"
       style={{
         color: message.read ? '#777' : '',
+        backgroundColor: openedMessage === message.id.toString() ? '#eee' : '',
       }}
       onClick={updateNavigate}
       aria-hidden="true">
