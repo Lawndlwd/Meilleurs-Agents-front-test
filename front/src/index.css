@@ -17,3 +17,9 @@ h4,
 p {
   @apply m-0;
 }
+.loader {
+  @apply absolute top-1/3  right-2/4;
+}
+.loader {
+  transform: translateX(50%);
+}

@@ -18,13 +18,12 @@ Réponse : intermédiaire, même si je suis meilleur en Vue, mais les deux frame
 
 Réponse :
 
+- J'utiliserais les technologies Web-socket ou SSE pour être informé des nouveaux messages du serveur, plutôt que d'appeler l'API à chaque fois pour obtenir de nouveaux messages.
 - J'ajouterais le Lazy-Loading sur nos appels d'API de messages.
-- J'ajouterais un spinner loading.
 - J'ajouterais errors handler en cas d'error.
 - ajouter des tests unitaires
 - Je pense que je peux améliorer le stockage que j'ai utilisé avec useContext et useReducer.
 - Testez-le pendant un certain temps avant de l'envoyer à la production, on va trouve des bug, ce sur.
-- J'utiliserais les technologies Web-socket ou SSE pour être informé des nouveaux messages du serveur, plutôt que d'appeler l'API à chaque fois pour obtenir de nouveaux messages.
 
 ---
 

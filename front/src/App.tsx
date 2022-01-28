@@ -1,3 +1,4 @@
+import loader from 'assets/loader.svg';
 import { Details } from 'components/Detail/Details';
 import { Messages } from 'components/Message/Messages';
 import { getAgents, getMessages } from 'http/http';
@@ -70,6 +71,7 @@ function App() {
         chosenAgentSet(value);
         navigate(`/realtors/${value}`);
       }}>
+      {!state.agents.length && <img className="loader" src={loader} alt="loader" />}
       <Routes>
         {state.agents.length && (
           <Route
