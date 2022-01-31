@@ -5,6 +5,7 @@ import logo from 'assets/logo.svg';
 import message from 'assets/message.svg';
 import { Button } from 'components/Button/Button';
 import { Search } from 'components/Search/Search';
+import useWindowDimensions from 'hooks/Dementions';
 import React from 'react';
 import { useAgent } from 'store/agent';
 export const Header = ({
@@ -20,6 +21,8 @@ export const Header = ({
 }) => {
   const { state: agentState } = useAgent();
   const [messageunreded, messageunrededSet] = React.useState('0');
+  const { width } = useWindowDimensions();
+
   React.useEffect(() => {
     const agent = agentState.agents.find((agent) => agent.id.toString() === value);
 
@@ -34,14 +37,16 @@ export const Header = ({
       <div className="Header_logo" aria-hidden>
         <img className="logo" src={logo} alt="logo" />
       </div>
-      <div>
-        <Search
-          label="Search"
-          placeHolder="Search"
-          handleChange={handleChange}
-          searchTerm={searchTerm}
-        />
-      </div>
+      {width > 720 && (
+        <div>
+          <Search
+            label="Search"
+            placeHolder="Search"
+            handleChange={handleChange}
+            searchTerm={searchTerm}
+          />
+        </div>
+      )}
       <section className="Header_options">
         <Button messageunreded={messageunreded} icon={message} />
         <select
