@@ -7,7 +7,6 @@ import { Layout } from 'layout/default';
 import React from 'react';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import { useAgent } from 'store/agent';
-
 function App() {
   const { dispatch, state } = useAgent();
 

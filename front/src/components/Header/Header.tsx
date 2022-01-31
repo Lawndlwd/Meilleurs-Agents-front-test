@@ -2,6 +2,7 @@
 import './Header.css';
 
 import logo from 'assets/logo.svg';
+import message from 'assets/message.svg';
 import { Button } from 'components/Button/Button';
 import { Search } from 'components/Search/Search';
 import React from 'react';
@@ -18,11 +19,11 @@ export const Header = ({
   searchTerm: string;
 }) => {
   const { state: agentState } = useAgent();
-  const [messageunreded, messageunrededSet] = React.useState(0);
+  const [messageunreded, messageunrededSet] = React.useState('0');
   React.useEffect(() => {
     const agent = agentState.agents.find((agent) => agent.id.toString() === value);
 
-    agent && messageunrededSet(agent.unread_messages);
+    agent && messageunrededSet(agent.unread_messages.toString());
   }, [agentState, value]);
   const handleAgentChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     onAgentChange(e.target.value);
@@ -42,7 +43,7 @@ export const Header = ({
         />
       </div>
       <section className="Header_options">
-        <Button messageunreded={messageunreded} />
+        <Button messageunreded={messageunreded} icon={message} />
         <select
           name="agents"
           id="agent"

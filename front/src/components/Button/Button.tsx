@@ -1,13 +1,19 @@
 import './Button.css';
 
-import message from 'assets/message.svg';
 import React from 'react';
-export const Button = ({ messageunreded }: { messageunreded: number }) => {
+export const Button = ({
+  messageunreded,
+  icon,
+}: {
+  messageunreded: string;
+  icon?: any;
+}) => {
   return (
     <div
+      role="button"
       className="Button"
-      style={{ backgroundColor: messageunreded === 0 ? '#777' : '' }}>
-      <img className="Button_logo" src={message} alt="message" />
+      style={{ backgroundColor: messageunreded === '0' ? '#777' : '' }}>
+      {icon && <img className="Button_logo" src={icon} alt="message" />}
       <span>{messageunreded}</span>
     </div>
   );

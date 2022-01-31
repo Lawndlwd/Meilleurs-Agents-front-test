@@ -3,7 +3,7 @@
 import { IAgent } from 'interfaces/types';
 import React, { useContext } from 'react';
 
-export type Actions = { type: 'SET_AGENTS' | 'UPDATE_AGENTS'; payload: any };
+export type Actions = { type: 'SET_AGENTS' | 'UPDATE_AGENTS' | ''; payload?: any };
 export type Dispatch = (action: Actions) => void;
 
 export const initialAgentState: { agents: Array<IAgent> } = { agents: [] };

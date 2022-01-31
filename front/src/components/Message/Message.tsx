@@ -109,7 +109,7 @@ export const Message = ({ message }: { message: IMessage }) => {
               {message.subject}
             </p>
           ) : (
-            <ShortText text={message.body} read={message.read} />
+            <ShortText long={80} text={message.body} read={message.read} />
           )}
         </main>
       </section>
