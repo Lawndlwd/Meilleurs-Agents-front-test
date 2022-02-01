@@ -37,6 +37,7 @@ export const Header = ({
       <div className="Header_logo" aria-hidden>
         <img className="logo" src={logo} alt="logo" />
       </div>
+
       {width > 720 && (
         <div>
           <Search
@@ -47,6 +48,7 @@ export const Header = ({
           />
         </div>
       )}
+
       <section className="Header_options">
         <Button messageunreded={messageunreded} icon={message} />
         <select

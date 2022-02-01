@@ -79,6 +79,7 @@ function App() {
               <Messages
                 messages={searchResults || state.agents[0].messages}
                 searchTerm={searchTerm}
+                handleChange={handleChange}
               />
             }
           />

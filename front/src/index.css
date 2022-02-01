@@ -26,3 +26,6 @@ p {
 .loader {
   transform: translateX(50%);
 }
+.mobile-searh {
+  @apply my-4 mx-4;
+}

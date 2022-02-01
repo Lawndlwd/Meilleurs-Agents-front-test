@@ -1,4 +1,6 @@
+/* eslint-disable no-unused-vars */
 import { Details } from 'components/Detail/Details';
+import { Search } from 'components/Search/Search';
 import useWindowDimensions from 'hooks/Dementions';
 import { IMessage } from 'interfaces/types';
 import React from 'react';
@@ -9,9 +11,11 @@ import { Message } from './Message';
 export const Messages = ({
   messages,
   searchTerm,
+  handleChange,
 }: {
   messages: IMessage[];
   searchTerm: string;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) => {
   let navigate = useNavigate();
 
@@ -32,6 +36,16 @@ export const Messages = ({
             ? 'Message_desktop'
             : 'Messages'
         }`}>
+        {width < 720 && (
+          <div className="mobile-searh">
+            <Search
+              label="Search"
+              placeHolder="Search"
+              handleChange={handleChange}
+              searchTerm={searchTerm}
+            />
+          </div>
+        )}
         {messages.length ? (
           messages.map((message) => <Message key={message.id} message={message} />)
         ) : (
